@@ -9,22 +9,18 @@ def csv_to_xlsx(csvfile):
         workbook = xlwt.Workbook()
         sheet = workbook.add_sheet('库存状态')
         i=0
-
+        #l1 is used to store first line
         l1 = []
         for line in read_csv:
             l1.append(line)
         first_line = str(l1[0]).replace("['","")
         first_line = first_line.replace("']","").split('，')
-        #for x in first_line:
-        #    print(x)
-        #print(first_line)
+        #l2 is used to store rest of the content
         l2 = []
         for index in range(len(l1)):
             if len(l1[index]) > 0 and index > 0:
                 l2.append(l1[index])
-        #print(l2)
         l2.sort(key=operator.itemgetter(0))
-        #print(l2)
 
         style1 = xlwt.XFStyle()
         pattern = xlwt.Pattern()
