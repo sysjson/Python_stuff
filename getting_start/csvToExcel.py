@@ -2,14 +2,16 @@ import csv
 import xlwt
 import operator
 
+#Author Yinglai Wang
+#Date   11/08/2018
+
 
 def csv_to_xlsx(csvfile):
     with open(csvfile, encoding='utf-8') as f:
         read_csv = csv.reader(f)
         workbook = xlwt.Workbook()
         sheet = workbook.add_sheet('库存状态')
-        i=0
-        #l1 is used to store first line
+        #l1 is used to store raw data
         l1 = []
         for line in read_csv:
             l1.append(line)
@@ -60,7 +62,7 @@ def csv_to_xlsx(csvfile):
                     sheet.write(i, j, var, style2)
                     j = j + 1
                     continue
-                if not len(word_list) < 4 and j==1:
+                if len(word_list) < 4 and j==1:
                     sheet.write(i, j, var, style3)
                     j = j + 1
                     continue
